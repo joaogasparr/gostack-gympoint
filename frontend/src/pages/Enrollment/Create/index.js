@@ -95,7 +95,7 @@ export default function Create() {
           plan_id: data.plan.id,
         });
       } catch (err) {
-        toast.error('Não foi possível carregar os dados da matrícula.');
+        toast.error(err.response.data.error);
         history.push('/enrollment');
       }
     }

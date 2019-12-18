@@ -44,7 +44,6 @@ export default function Create() {
 
       history.push('/student');
     } catch (err) {
-      console.tron.log(err);
       toast.error(err.response.data.error);
     }
   }
