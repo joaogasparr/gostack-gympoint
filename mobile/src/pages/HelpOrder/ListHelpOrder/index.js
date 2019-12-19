@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { withNavigationFocus } from 'react-navigation';
 import { useSelector } from 'react-redux';
@@ -17,7 +18,10 @@ import { Container, List } from './styles';
 
 function ListHelpOrder({ navigation, isFocused }) {
   const [helporders, setHelpOrders] = useState([]);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [loadMore, setLoadMore] = useState(true);
 
   const student = useSelector(state => state.student.student);
 
@@ -38,14 +42,28 @@ function ListHelpOrder({ navigation, isFocused }) {
     });
   }, [socket, helporders]);
 
-  useEffect(() => {
-    async function loadHelpOrders() {
-      try {
+  async function loadHelpOrders(pagination = 1, refresh = false) {
+    try {
+      if (loadMore || refresh) {
         setLoading(true);
 
-        const response = await api.get(`students/${student.id}/help-orders`);
+        if (refresh) {
+          setRefreshing(true);
+          setLoadMore(true);
+          setHelpOrders([]);
+        }
 
-        const data = response.data.map(helporder => ({
+        const response = await api.get(`students/${student.id}/help-orders`, {
+          params: {
+            page: pagination,
+          },
+        });
+
+        if (!response.data.length) {
+          setLoadMore(false);
+        }
+
+        const dataFormatted = response.data.map(helporder => ({
           ...helporder,
           dateFormatted: formatRelative(
             parseISO(
@@ -59,16 +77,30 @@ function ListHelpOrder({ navigation, isFocused }) {
           ),
         }));
 
-        setHelpOrders(data);
-      } catch (err) {
-        Alert.alert('Atenção', err.response.data.error);
-      } finally {
-        setLoading(false);
-      }
-    }
+        const data =
+          pagination >= 2 ? [...helporders, ...dataFormatted] : dataFormatted;
 
-    loadHelpOrders();
+        setHelpOrders(data);
+        setPage(pagination);
+      }
+    } catch (err) {
+      Alert.alert('Atenção', err.response.data.error);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }
+
+  useEffect(() => {
+    loadHelpOrders(1, true);
   }, [isFocused]);
+
+  async function handleLoadMore() {
+    if (loadMore && !refreshing) {
+      const nextPage = page + 1;
+      await loadHelpOrders(nextPage);
+    }
+  }
 
   function handleOnPress(data) {
     navigation.navigate('ShowHelpOrder', { data });
@@ -83,6 +115,10 @@ function ListHelpOrder({ navigation, isFocused }) {
         </Button>
         <List
           data={helporders}
+          onRefresh={() => loadHelpOrders(1, true)}
+          refreshing={refreshing}
+          onEndReachedThreshold={0.2}
+          onEndReached={handleLoadMore}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             <HelpOrder

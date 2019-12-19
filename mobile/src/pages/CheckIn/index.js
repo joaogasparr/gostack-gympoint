@@ -16,7 +16,10 @@ import { Container, List, Content, CheckInText, CheckInTime } from './styles';
 
 export default function CheckIn() {
   const [checkins, setCheckIns] = useState([]);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [loadMore, setLoadMore] = useState(true);
 
   const student = useSelector(state => state.student.student);
 
@@ -27,28 +30,56 @@ export default function CheckIn() {
     });
   }
 
-  useEffect(() => {
-    async function loadCheckIns() {
-      try {
+  async function loadCheckIns(pagination = 1, refresh = false) {
+    try {
+      if (loadMore || refresh) {
         setLoading(true);
 
-        const response = await api.get(`students/${student.id}/checkins`);
+        if (refresh) {
+          setRefreshing(true);
+          setLoadMore(true);
+          setCheckIns([]);
+        }
 
-        const data = response.data.map(checkin => ({
+        const response = await api.get(`students/${student.id}/checkins`, {
+          params: {
+            page: pagination,
+          },
+        });
+
+        if (!response.data.length) {
+          setLoadMore(false);
+        }
+
+        const dataFormatted = response.data.map(checkin => ({
           ...checkin,
           dateFormatted: formatDate(checkin.created_at),
         }));
 
-        setCheckIns(data);
-      } catch (err) {
-        Alert.alert('Atenção', err.response.data.error);
-      } finally {
-        setLoading(false);
-      }
-    }
+        const data =
+          pagination >= 2 ? [...checkins, ...dataFormatted] : dataFormatted;
 
+        setCheckIns(data);
+        setPage(pagination);
+      }
+    } catch (err) {
+      Alert.alert('Atenção', err.response.data.error);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }
+
+  useEffect(() => {
     loadCheckIns();
   }, []);
+
+  function handleLoadMore() {
+    if (loadMore && !refreshing) {
+      const nextPage = page + 1;
+      loadCheckIns(nextPage);
+    }
+  }
 
   async function handleSubmit() {
     try {
@@ -76,6 +107,10 @@ export default function CheckIn() {
 
         <List
           data={checkins}
+          onRefresh={() => loadCheckIns(1, true)}
+          refreshing={refreshing}
+          onEndReachedThreshold={0.2}
+          onEndReached={handleLoadMore}
           keyExtractor={item => String(item.id)}
           renderItem={({ item, index }) => (
             <Content>
