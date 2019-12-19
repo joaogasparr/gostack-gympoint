@@ -40,11 +40,24 @@ A step by step series of examples that tell you how to get a development env run
 $> git clone https://github.com/joaogasparr/gostack-gympoint.git
 ```
 
+### :books: Databases
+
+The first thing you must do is configure all database settings. To do this, follow the steps below at the terminal.
+
+```
+$> docker run --name postgresql -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:11
+
+$> docker run --name redis -p 6379:6379 -d -t redis:alpine
+```
+
 ### :gear: Back-end
 
 ```
 # First install back-end dependencies
 $> cd ./backend/ && yarn
+
+# Create the .env file by copying from .env.example and replace the information
+$> cp .env.example .env
 
 # Create database table structure
 $> yarn sequelize db:migrate
@@ -72,6 +85,9 @@ $> yarn start
 # First install mobile dependencies
 $> cd ./mobile/ && yarn
 
+# Create the .env file by copying from .env.example and replace the information
+$> cp .env.example .env
+
 # Second step start metro bundler
 $> yarn start or yarn start --reset-cache
 
@@ -83,6 +99,7 @@ $> cd ./ios/ && pod install && cd ..
 $> react-native run-ios or yarn ios
 
 ```
+
 
 ---
 
