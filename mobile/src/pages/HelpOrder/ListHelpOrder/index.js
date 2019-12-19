@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Alert } from 'react-native';
+import { APP_URL } from 'react-native-dotenv';
 import PropTypes from 'prop-types';
 import { withNavigationFocus } from 'react-navigation';
 import { useSelector } from 'react-redux';
@@ -27,7 +28,7 @@ function ListHelpOrder({ navigation, isFocused }) {
 
   const socket = useMemo(
     () =>
-      socketio('http://localhost:3333', {
+      socketio(APP_URL, {
         query: {
           user_id: student.id,
         },
