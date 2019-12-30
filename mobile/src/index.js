@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 
 import '~/config/ReactotronConfig';
 
-import store from '~/store';
 import App from '~/App';
+import store from '~/store';
 
 export default function Index() {
   return (

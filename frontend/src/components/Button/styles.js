@@ -1,5 +1,5 @@
-import styled, { keyframes, css } from 'styled-components';
 import { darken } from 'polished';
+import styled, { keyframes, css } from 'styled-components';
 
 const rotate = keyframes`
   from {

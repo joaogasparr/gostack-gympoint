@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { toast } from 'react-toastify';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+
 import socketio from 'socket.io-client';
 
+import Button from '~/components/Button';
+import Content from '~/components/Content';
+import { Footer, FooterButton } from '~/components/Table';
+import Header from '~/components/Title';
 import api from '~/services/api';
 import schema from '~/validators/Answer';
-
-import Header from '~/components/Title';
-import Content from '~/components/Content';
-import Button from '~/components/Button';
-import { Footer, FooterButton } from '~/components/Table';
 
 import {
   Container,
@@ -105,7 +105,7 @@ export default function HelpOrder() {
         </FormAnswer>
       </AnswerModal>
 
-      <Header text="Pedidos de auxílio"></Header>
+      <Header text="Pedidos de auxílio" />
       <Content>
         <HelpOrderTable>
           <thead>

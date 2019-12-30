@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Form } from '@rocketseat/unform';
-import { toast } from 'react-toastify';
-import { Link, useParams } from 'react-router-dom';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
+import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
+import { Form } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
+
+import Button from '~/components/Button';
+import TextInput from '~/components/TextInput';
+import Header from '~/components/Title';
 import api from '~/services/api';
 import history from '~/services/history';
 import schema from '~/validators/Student';
-
-import Header from '~/components/Title';
-import Button from '~/components/Button';
-import TextInput from '~/components/TextInput';
 
 import { Container, Content } from './styles';
 

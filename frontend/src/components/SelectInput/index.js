@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { useField } from '@rocketseat/unform';
 import AsyncSelect from 'react-select/async';
+
+import { useField } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
@@ -47,7 +48,7 @@ export default function SelectInput({
         selectRef.select.clearValue();
       },
     });
-  }, [ref.current, fieldName]);
+  }, [fieldName, registerField]);
 
   return (
     <Container>
@@ -81,11 +82,13 @@ export default function SelectInput({
 SelectInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
+  multiple: PropTypes.bool,
   options: PropTypes.oneOfType([PropTypes.array]).isRequired,
   onChange: PropTypes.func,
 };
 
 SelectInput.defaultProps = {
   label: '',
+  multiple: false,
   onChange: null,
 };

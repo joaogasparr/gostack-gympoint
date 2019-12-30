@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import { Form, Textarea } from '@rocketseat/unform';
 import ReactModal from 'react-modal';
+
+import { Form, Textarea } from '@rocketseat/unform';
+import styled from 'styled-components';
 
 import { Table } from '~/components/Table';
 

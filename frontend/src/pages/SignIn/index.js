@@ -1,14 +1,14 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Form } from '@rocketseat/unform';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 
-import TextInput from '~/components/TextInput';
+import { Form } from '@rocketseat/unform';
+
+import logo from '~/assets/logo.svg';
 import SubmitButton from '~/components/Button';
-
+import TextInput from '~/components/TextInput';
 import { signInRequest } from '~/store/modules/auth/actions';
 import schema from '~/validators/SignIn';
-import logo from '~/assets/logo.svg';
 
 export default function SignIn() {
   const dispatch = useDispatch();

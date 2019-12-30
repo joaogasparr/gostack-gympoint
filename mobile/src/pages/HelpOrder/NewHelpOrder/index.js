@@ -1,14 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Alert, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useSelector } from 'react-redux';
 
-import api from '~/services/api';
+import PropTypes from 'prop-types';
 
 import Background from '~/components/Background';
-import Header from '~/components/Header';
 import Button from '~/components/Button';
+import Header from '~/components/Header';
+import api from '~/services/api';
 
 import { Container, TextArea } from './styles';
 

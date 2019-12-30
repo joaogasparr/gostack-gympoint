@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useSelector } from 'react-redux';
+
 import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import api from '~/services/api';
 
 import Background from '~/components/Background';
-import Header from '~/components/Header';
 import Button from '~/components/Button';
+import Header from '~/components/Header';
+import api from '~/services/api';
 
 import { Container, List, Content, CheckInText, CheckInTime } from './styles';
 
@@ -116,8 +116,8 @@ export default function CheckIn() {
             <Content>
               {loading ? (
                 <>
-                  <ShimmerPlaceHolder autoRun={true} />
-                  <ShimmerPlaceHolder autoRun={true} width={74} />
+                  <ShimmerPlaceHolder autoRun />
+                  <ShimmerPlaceHolder autoRun width={74} />
                 </>
               ) : (
                 <>

@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import PropTypes from 'prop-types';
 
 import {
   Container,
@@ -19,12 +20,12 @@ export default function HelpOrder({ data, loading, onPress }) {
         <>
           <HelpHeader>
             <IconHeader>
-              <ShimmerPlaceHolder autoRun={true} />
+              <ShimmerPlaceHolder autoRun />
             </IconHeader>
-            <ShimmerPlaceHolder autoRun={true} width={74} />
+            <ShimmerPlaceHolder autoRun width={74} />
           </HelpHeader>
           <ShimmerPlaceHolder
-            autoRun={true}
+            autoRun
             width={295}
             height={78}
             style={{ marginTop: 16 }}
@@ -53,6 +54,7 @@ export default function HelpOrder({ data, loading, onPress }) {
 }
 
 HelpOrder.propTypes = {
+  data: PropTypes.oneOfType[(PropTypes.array, PropTypes.element)].isRequired,
   onPress: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };

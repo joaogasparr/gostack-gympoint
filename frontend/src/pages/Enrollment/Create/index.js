@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import { Link, useParams } from 'react-router-dom';
-import { Form } from '@rocketseat/unform';
-import { toast } from 'react-toastify';
-import { parseISO, addMonths } from 'date-fns';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
+import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
+import { Form } from '@rocketseat/unform';
+import { parseISO, addMonths } from 'date-fns';
+import PropTypes from 'prop-types';
+
+import Button from '~/components/Button';
+import DatePicker from '~/components/DatePicker';
+import NumberInput from '~/components/NumberFormat';
+import SelectInput from '~/components/SelectInput';
+import Header from '~/components/Title';
 import api from '~/services/api';
 import history from '~/services/history';
 import schema from '~/validators/Enrollment';
-
-import Header from '~/components/Title';
-import Button from '~/components/Button';
-import SelectInput from '~/components/SelectInput';
-import NumberInput from '~/components/NumberFormat';
-import DatePicker from '~/components/DatePicker';
 
 import { Container, Content } from './styles';
 
@@ -105,7 +105,7 @@ export default function Create() {
     }
 
     loadPlanOptions();
-  }, [id]);
+  }, [id, loadPlanOptions, plans, students]);
 
   async function newEnrollment(data) {
     try {

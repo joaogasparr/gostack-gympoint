@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { useField } from '@rocketseat/unform';
 import ReactDatePicker from 'react-datepicker';
-import MaskedTextInput from 'react-text-mask';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import MaskedTextInput from 'react-text-mask';
+
+import { useField } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
 
 import { Container, ContentPicker } from './styles';
 
@@ -39,7 +40,7 @@ export default function DatePicker({
         pickerRef.clear();
       },
     });
-  }, [ref.current, fieldName]);
+  }, [fieldName, registerField]);
 
   return (
     <Container>
@@ -75,6 +76,7 @@ DatePicker.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   disabled: PropTypes.bool,
+  calculated: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.any,
 };
@@ -82,6 +84,7 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
   label: '',
   disabled: false,
+  calculated: false,
   onChange: null,
   value: null,
 };

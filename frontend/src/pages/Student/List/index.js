@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { MdAdd, MdArrowBack, MdArrowForward } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import Shimmer from 'react-shimmer-effect';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
-import { MdAdd, MdArrowBack, MdArrowForward } from 'react-icons/md';
 
-import api from '~/services/api';
-
-import Header from '~/components/Title';
-import Content from '~/components/Content';
 import Button from '~/components/Button';
+import Content from '~/components/Content';
 import { Footer, FooterButton } from '~/components/Table';
+import Header from '~/components/Title';
+import api from '~/services/api';
 
 import { Container, StudentTable, ShimmerLine } from './styles';
 

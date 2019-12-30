@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { useField } from '@rocketseat/unform';
 import CurrencyInput from 'react-number-format';
+
+import { useField } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
@@ -26,21 +27,21 @@ export default function NumberFormat({
       ref: ref.current,
       path: 'state.value',
     });
-  }, [ref.current, fieldName]);
+  }, [fieldName, registerField]);
 
   return (
     <Container calculated={calculated}>
       {label && <label htmlFor={fieldName}>{label}</label>}
       <CurrencyInput
         name={fieldName}
-        prefix={'R$'}
-        teste={true}
+        prefix="R$"
+        teste
         defaultValue={defaultValue}
         value={value}
         onValueChange={({ value }) => onChange(value)}
-        thousandSeparator={true}
+        thousandSeparator
         decimalScale={2}
-        fixedDecimalScale={true}
+        fixedDecimalScale
         ref={ref}
         disabled={calculated}
         {...rest}
@@ -53,10 +54,12 @@ export default function NumberFormat({
 NumberFormat.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
+  calculated: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
 NumberFormat.defaultProps = {
   label: '',
+  calculated: false,
   onChange: null,
 };

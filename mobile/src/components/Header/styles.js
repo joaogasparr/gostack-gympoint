@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
-import styled from 'styled-components/native';
 import { ifIphoneX, getStatusBarHeight } from 'react-native-iphone-x-helper';
+
+import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
   background: #fff;

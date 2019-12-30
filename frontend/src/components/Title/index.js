@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { MdSearch } from 'react-icons/md';
+
+import PropTypes from 'prop-types';
 
 import { Wrapper, Content, SearchInput } from './styles';
 

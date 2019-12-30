@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Alert } from 'react-native';
 import { APP_URL } from 'react-native-dotenv';
-import PropTypes from 'prop-types';
 import { withNavigationFocus } from 'react-navigation';
 import { useSelector } from 'react-redux';
+
 import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+import PropTypes from 'prop-types';
 import socketio from 'socket.io-client';
 
-import api from '~/services/api';
-
 import Background from '~/components/Background';
-import Header from '~/components/Header';
 import Button from '~/components/Button';
+import Header from '~/components/Header';
 import HelpOrder from '~/components/HelpOrder';
+import api from '~/services/api';
 
 import { Container, List } from './styles';
 
@@ -68,7 +68,7 @@ function ListHelpOrder({ navigation, isFocused }) {
           ...helporder,
           dateFormatted: formatRelative(
             parseISO(
-              !!helporder.answer ? helporder.answer_at : helporder.created_at,
+              helporder.answer ? helporder.answer_at : helporder.created_at,
             ),
             new Date(),
             {
