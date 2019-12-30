@@ -54,7 +54,6 @@ export default function HelpOrder({ data, loading, onPress }) {
 }
 
 HelpOrder.propTypes = {
-  data: PropTypes.oneOfType[(PropTypes.array, PropTypes.element)].isRequired,
   onPress: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
