@@ -48,7 +48,7 @@ export default function SelectInput({
         selectRef.select.clearValue();
       },
     });
-  }, [fieldName, registerField]);
+  }, [ref.current, fieldName]);
 
   return (
     <Container>

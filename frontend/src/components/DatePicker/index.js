@@ -40,7 +40,7 @@ export default function DatePicker({
         pickerRef.clear();
       },
     });
-  }, [fieldName, registerField]);
+  }, [ref.current, fieldName]);
 
   return (
     <Container>

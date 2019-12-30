@@ -27,7 +27,7 @@ export default function NumberFormat({
       ref: ref.current,
       path: 'state.value',
     });
-  }, [fieldName, registerField]);
+  }, [ref.current, fieldName]);
 
   return (
     <Container calculated={calculated}>
@@ -35,7 +35,6 @@ export default function NumberFormat({
       <CurrencyInput
         name={fieldName}
         prefix="R$"
-        teste
         defaultValue={defaultValue}
         value={value}
         onValueChange={({ value }) => onChange(value)}
