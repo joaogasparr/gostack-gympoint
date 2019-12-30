@@ -7,12 +7,14 @@ import { toast } from 'react-toastify';
 import { formatDistanceStrict, addMonths } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
+import api from '~/services/api';
+
+import { formatPrice } from '~/util/format';
+
 import Button from '~/components/Button';
 import Content from '~/components/Content';
 import { Footer, FooterButton } from '~/components/Table';
 import Header from '~/components/Title';
-import api from '~/services/api';
-import { formatPrice } from '~/util/format';
 
 import { Container, PlanTable, ShimmerLine } from './styles';
 

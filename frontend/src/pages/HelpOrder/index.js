@@ -5,11 +5,13 @@ import { toast } from 'react-toastify';
 
 import socketio from 'socket.io-client';
 
+import api from '~/services/api';
+
 import Button from '~/components/Button';
 import Content from '~/components/Content';
 import { Footer, FooterButton } from '~/components/Table';
 import Header from '~/components/Title';
-import api from '~/services/api';
+
 import schema from '~/validators/Answer';
 
 import {

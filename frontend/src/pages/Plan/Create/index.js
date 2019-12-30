@@ -6,12 +6,14 @@ import { toast } from 'react-toastify';
 import { Form } from '@rocketseat/unform';
 import PropTypes from 'prop-types';
 
+import api from '~/services/api';
+import history from '~/services/history';
+
 import Button from '~/components/Button';
 import NumberInput from '~/components/NumberFormat';
 import TextInput from '~/components/TextInput';
 import Header from '~/components/Title';
-import api from '~/services/api';
-import history from '~/services/history';
+
 import schema from '~/validators/Plan';
 
 import { Container, Content } from './styles';

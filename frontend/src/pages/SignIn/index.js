@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Form } from '@rocketseat/unform';
 
+import { signInRequest } from '~/store/modules/auth/actions';
+
 import logo from '~/assets/logo.svg';
 import SubmitButton from '~/components/Button';
 import TextInput from '~/components/TextInput';
-import { signInRequest } from '~/store/modules/auth/actions';
+
 import schema from '~/validators/SignIn';
 
 export default function SignIn() {

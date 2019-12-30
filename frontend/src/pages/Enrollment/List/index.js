@@ -9,11 +9,13 @@ import pt from 'date-fns/locale/pt';
 
 import checkGreen from '~/assets/check-green.svg';
 import checkGrey from '~/assets/check-grey.svg';
+
+import api from '~/services/api';
+
 import Button from '~/components/Button';
 import Content from '~/components/Content';
 import { Footer, FooterButton } from '~/components/Table';
 import Header from '~/components/Title';
-import api from '~/services/api';
 
 import { Container, EnrollmentTable, ShimmerLine } from './styles';
 

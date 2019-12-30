@@ -7,14 +7,15 @@ import { Form } from '@rocketseat/unform';
 import { parseISO, addMonths } from 'date-fns';
 import PropTypes from 'prop-types';
 
+import api from '~/services/api';
+import history from '~/services/history';
+import schema from '~/validators/Enrollment';
+
 import Button from '~/components/Button';
 import DatePicker from '~/components/DatePicker';
 import NumberInput from '~/components/NumberFormat';
 import SelectInput from '~/components/SelectInput';
 import Header from '~/components/Title';
-import api from '~/services/api';
-import history from '~/services/history';
-import schema from '~/validators/Enrollment';
 
 import { Container, Content } from './styles';
 
