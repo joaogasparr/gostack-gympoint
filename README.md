@@ -77,6 +77,10 @@ $> cd ./frontend/ && yarn
 
 # Then run app
 $> yarn start
+
+# Admin User
+$> Login: admin@gympoint.com
+$> Password: 123456
 ```
 
 ### :iphone: Mobile
@@ -97,7 +101,6 @@ $> react-native run-android or yarn android
 Then run the app on iOS
 $> cd ./ios/ && pod install && cd ..
 $> react-native run-ios or yarn ios
-
 ```
 
 
