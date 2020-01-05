@@ -1,5 +1,9 @@
+// Model's
 import HelpOrder from '../models/HelpOrder';
 import Student from '../models/Student';
+// Mail
+import AnswerMail from '../jobs/AnswerMail';
+import Queue from '../../lib/Queue';
 
 class AnswerController {
   async index(req, res) {
@@ -49,7 +53,7 @@ class AnswerController {
         {
           model: Student,
           as: 'student',
-          attributes: ['name'],
+          attributes: ['name', 'email'],
         },
       ],
     });
@@ -59,6 +63,10 @@ class AnswerController {
     if (ownerSocket) {
       req.io.to(ownerSocket).emit('answer', answer);
     }
+
+    await Queue.add(AnswerMail.key, {
+      answer,
+    });
 
     return res.json(answer);
   }
